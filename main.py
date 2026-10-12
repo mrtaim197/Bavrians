@@ -2166,7 +2166,5 @@ async def on_command_error(ctx, error):
     print("Error:", error)
 
 
-if __name__ == "__main__":
-import os
 
 bot.run(os.getenv("DISCORD_TOKEN"))
