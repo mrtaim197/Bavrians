@@ -1,8 +1,10 @@
 import os
+import discord
 from discord.ext import commands
 from flask import Flask
 from threading import Thread
 
+# إعداد خادم الويب لتجاوز فحص المنافذ في Render
 app = Flask('')
 
 @app.route('/')
@@ -17,17 +19,19 @@ def keep_alive():
     t = Thread(target=run)
     t.start()
 
-# تشغيل سيرفر الويب أولاً
 keep_alive()
 
-# ضع كود بوت ديسكورد الخاص بك هنا
-bot = commands.Bot(command_prefix="!")
+# إعداد البوت مع الـ intents المطلوبة
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
-# استبدل TOKEN بتوكن البوت الخاص بك أو المتغير البيئي
+# تشغيل البوت باستخدام التوكن المحفوظ في متغيرات البيئة
 bot.run(os.environ.get("TOKEN"))
 import asyncio
 import datetime
