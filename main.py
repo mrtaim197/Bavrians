@@ -1,4 +1,5 @@
 import os
+from discord.ext import commands
 from flask import Flask
 from threading import Thread
 
@@ -16,7 +17,18 @@ def keep_alive():
     t = Thread(target=run)
     t.start()
 
+# تشغيل سيرفر الويب أولاً
 keep_alive()
+
+# ضع كود بوت ديسكورد الخاص بك هنا
+bot = commands.Bot(command_prefix="!")
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+# استبدل TOKEN بتوكن البوت الخاص بك أو المتغير البيئي
+bot.run(os.environ.get("TOKEN"))
 import asyncio
 import datetime
 import io
