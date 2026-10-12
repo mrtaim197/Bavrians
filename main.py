@@ -2201,5 +2201,4 @@ async def on_command_error(ctx, error):
     print("Error:", error)
 
 
-
-bot.run(os.environ.get("DISCORD_TOKEN"))
+bot.run("MTU1Njc5NDIwMDcwMjQ1NTg4NA.G0h8fm.FFsezFSagBmx43utQHgk5a-vednC8Eg3fpTJLo")
